@@ -1,14 +1,13 @@
-import time
-import colorama
-from colorama import Fore, Back, Style
+import os
 
-colorama.init(autoreset=True)
-
-with open("ascii_art.txt", "r") as f:
-    ascii_art = f.read()
-    for line in ascii_art.splitlines():
-        for i, char in enumerate(line):
-            color = Fore.RED if i % 7 == 0 else Fore.GREEN if i % 7 == 1 else Fore.YELLOW if i % 7 == 2 else Fore.BLUE if i % 7 == 3 else Fore.MAGENTA if i % 7 == 4 else Fore.CYAN if i % 7 == 5 else Fore.WHITE
-            print(color + char, end='')
-        print()
-        time.sleep(0.1)
+art_file = input("Enter the name of the ASCII art file (ascii_art.txt or ascii_art2.txt): ")
+if art_file == "ascii_art.txt" or art_file == "ascii_art2.txt":
+    if os.path.exists(art_file):
+        with open(art_file, "r") as f:
+            art = f.read()
+            print(art)
+    else:
+        print(f"Error: File '{art_file}' not found.")
+else:
+    print("Invalid file name. Please enter 'ascii_art.txt' or 'ascii_art2.txt'.")
+    
